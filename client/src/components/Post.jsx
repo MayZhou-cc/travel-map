@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Post = ({ post, removePost }) => (
+const Post = ({ post, removePost, editing, editPost }) => (
   <div>
     <h4>
       {post.title}
@@ -8,6 +8,9 @@ const Post = ({ post, removePost }) => (
     <p>
       {post.description}
     </p>
+    {
+      !editing && <button onClick={() => { editPost(post) }}>Edit</button>
+    }
     <button onClick={() => removePost(post.id)}>
       Remove
     </button>
