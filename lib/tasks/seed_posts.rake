@@ -1,4 +1,4 @@
-task seed_jobs: :environment do
+task seed_posts: :environment do
 
   Post.create(
       title: 'Brisbane',
