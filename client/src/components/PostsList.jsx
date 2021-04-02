@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import NewPostForm from './NewPostForm'
+import Post from './Post'
 
 const PostsList = () => {
   useEffect(() => {
@@ -32,16 +33,22 @@ const PostsList = () => {
     setPosts([...posts, post])
   }
 
+  const removePost = id => {
+    axios.delete('/api/v1/posts/' + id)
+      .then(() => {
+        setPosts(posts.filter(post => post.id !== id))
+      })
+      .catch(error => console.log(error))
+  }
+
   return (
     <div>
       <div className="post-form">
         <NewPostForm initialFormState={initialFormState} addPost={addPost} />
       </div>
       <div className="posts-list">
-        {posts.map((post, index) => (
-          <div key={index}>
-            {post.title} | {post.description}
-          </div>
+        {posts.map((post) => (
+          <Post key={post.id} post={post} removePost={removePost} />
         ))}
       </div>
     </div>
