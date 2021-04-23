@@ -15,7 +15,6 @@ const PostsList = () => {
   const [editing, setEditing] = useState(false)
   const [currentPost, setCurrentPost] = useState(initialFormState)
 
-
   const addPost = post => {
     const qs = require('qs') //query strings
 
